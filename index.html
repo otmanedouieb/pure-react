@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
 
-  <div class="index"></div>
+  <div id="root"></div>
 
   <body>
     <script
@@ -17,5 +17,23 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+
+    <script>
+      function App() {
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+        React.useEffect(function () {
+          setInterval(() => {
+            setTime(new Date().toLocaleTimeString());
+          }, 1000);
+        }, []);
+
+        return React.createElement("header", null, `Hello world ${time}`);
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+
+      root.render(React.createElement(App));
+    </script>
   </body>
 </html>
